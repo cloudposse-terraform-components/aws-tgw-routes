@@ -66,7 +66,6 @@ components:
         # Route propagation from VPC attachments
         propagated_routes:
           - attachment_id: "tgw-attach-0123456789abcdef1"
-            vpc_id: "vpc-0123456789abcdef0"
 ```
 
 The same configuration using terraform outputs:
@@ -86,7 +85,6 @@ components:
         # Route propagation from VPC attachments
         propagated_routes:
           - attachment_id: !terraform.output tgw/attachment app-vpc transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc app-vpc vpc_id
 ```
 
 ### Multiple Environment Example
@@ -112,9 +110,7 @@ components:
         # Enable route propagation from specific VPCs
         propagated_routes:
           - attachment_id: "tgw-attach-0123456789abcdef4"
-            vpc_id: "vpc-0123456789abcdef1"
           - attachment_id: "tgw-attach-0123456789abcdef5"
-            vpc_id: "vpc-0123456789abcdef2"
 ```
 
 The same configuration using terraform outputs:
@@ -138,28 +134,8 @@ components:
         # Enable route propagation from specific VPCs
         propagated_routes:
           - attachment_id: !terraform.output tgw/attachment dev-use1-network transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc dev-use1-network vpc_id
           - attachment_id: !terraform.output tgw/attachment staging-use1-network transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc staging-use1-network vpc_id
 ```
-
-### Important Notes
-
-1. **Static Routes vs Propagated Routes**:
-   - Use static routes for specific CIDR destinations
-   - Use route propagation for dynamic routing from attached VPCs
-   - Blackhole routes can be created to drop traffic to specific CIDRs
-
-2. **Route Table Management**:
-   - Each Transit Gateway can have multiple route tables
-   - Route tables can be associated with specific VPC attachments
-   - Route propagation enables automatic route sharing
-
-3. **Best Practices**:
-   - Keep prod and nonprod routing separate
-   - Document route purposes and dependencies
-   - Use clear naming conventions for route tables
-   - Consider using blackhole routes for security
 
 > [!IMPORTANT]
 > In Cloud Posse's examples, we avoid pinning modules to specific versions to prevent discrepancies between the documentation
