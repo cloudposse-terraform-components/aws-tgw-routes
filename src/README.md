@@ -1,23 +1,27 @@
 ---
 tags:
-  - component/tgw/routes
-  - layer/network
-  - provider/aws
+  - terraform
+  - terraform-modules
+  - aws
+  - components
+  - terraform-components
+  - root
+  - geodesic
+  - reference-implementation
+  - reference-architecture
 ---
 
-# Component: `tgw/routes`
+# Component: `tgw-routes`
 
-This component is responsible for managing Transit Gateway route tables, including static routes and route propagation. It enables controlled routing between VPC attachments in a Transit Gateway network.
-
+Manages AWS Transit Gateway (TGW) route tables, including static routes and
+route propagation from VPC attachments. Enables controlled routing between
+VPCs connected to a TGW by configuring TGW route table associations,
+propagations, and explicit routes as needed.
 ## Usage
 
 **Stack Level**: Regional
 
-This component is typically deployed in the network account where the Transit Gateway exists. It manages both static routes and route propagation for Transit Gateway route tables.
-
-### Basic Example
-
-Here's a simple example using physical IDs:
+Here's an example snippet for how to use this component.
 
 ```yaml
 components:
@@ -34,7 +38,6 @@ components:
         # Route propagation from VPC attachments
         propagated_routes:
           - attachment_id: "tgw-attach-0123456789abcdef1"
-            vpc_id: "vpc-0123456789abcdef0"
 ```
 
 The same configuration using terraform outputs:
@@ -54,7 +57,6 @@ components:
         # Route propagation from VPC attachments
         propagated_routes:
           - attachment_id: !terraform.output tgw/attachment app-vpc transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc app-vpc vpc_id
 ```
 
 ### Multiple Environment Example
@@ -80,9 +82,7 @@ components:
         # Enable route propagation from specific VPCs
         propagated_routes:
           - attachment_id: "tgw-attach-0123456789abcdef4"
-            vpc_id: "vpc-0123456789abcdef1"
           - attachment_id: "tgw-attach-0123456789abcdef5"
-            vpc_id: "vpc-0123456789abcdef2"
 ```
 
 The same configuration using terraform outputs:
@@ -106,31 +106,11 @@ components:
         # Enable route propagation from specific VPCs
         propagated_routes:
           - attachment_id: !terraform.output tgw/attachment dev-use1-network transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc dev-use1-network vpc_id
           - attachment_id: !terraform.output tgw/attachment staging-use1-network transit_gateway_attachment_id
-            vpc_id: !terraform.output vpc staging-use1-network vpc_id
 ```
 
-## Important Notes
 
-1. **Static Routes vs Propagated Routes**:
-   - Use static routes for specific CIDR destinations
-   - Use route propagation for dynamic routing from attached VPCs
-   - Blackhole routes can be created to drop traffic to specific CIDRs
-
-2. **Route Table Management**:
-   - Each Transit Gateway can have multiple route tables
-   - Route tables can be associated with specific VPC attachments
-   - Route propagation enables automatic route sharing
-
-3. **Best Practices**:
-   - Keep prod and nonprod routing separate
-   - Document route purposes and dependencies
-   - Use clear naming conventions for route tables
-   - Consider using blackhole routes for security
-
-<!-- prettier-ignore-start -->
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- markdownlint-disable -->
 ## Requirements
 
 | Name | Version |
@@ -189,5 +169,19 @@ components:
 | Name | Description |
 |------|-------------|
 | <a name="output_mock"></a> [mock](#output\_mock) | Mock output example for the Cloud Posse Terraform component template |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- prettier-ignore-end -->
+<!-- markdownlint-restore -->
+
+
+
+## References
+
+
+- [Cloud Posse Documentation](https://docs.cloudposse.com) - Complete documentation for the Cloud Posse solution
+
+- [Reference Architectures](https://cloudposse.com/) - Launch effortlessly with our turnkey reference architectures, built either by your team or ours.
+
+
+
+
+[<img src="https://cloudposse.com/logo-300x69.svg" height="32" align="right"/>](https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse-terraform-components/aws-tgw-routes&utm_content=)
+
