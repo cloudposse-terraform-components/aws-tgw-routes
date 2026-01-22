@@ -214,7 +214,9 @@ components:
 
 | Name | Description |
 |------|-------------|
-| <a name="output_mock"></a> [mock](#output\_mock) | Mock output example for the Cloud Posse Terraform component template |
+| <a name="output_transit_gateway_route_table_associations"></a> [transit\_gateway\_route\_table\_associations](#output\_transit\_gateway\_route\_table\_associations) | Transit Gateway route table associations |
+| <a name="output_transit_gateway_route_table_propagations"></a> [transit\_gateway\_route\_table\_propagations](#output\_transit\_gateway\_route\_table\_propagations) | Transit Gateway route table propagations |
+| <a name="output_transit_gateway_routes"></a> [transit\_gateway\_routes](#output\_transit\_gateway\_routes) | Transit Gateway static routes |
 <!-- markdownlint-restore -->
 
 
@@ -275,7 +277,7 @@ For additional context, refer to some of these links.
 > - **Customer Workshops.** Engage with our team in weekly workshops, gaining insights and strategies to continuously improve and innovate.
 >
 > <a href="https://cpco.io/commercial-support?utm_source=github&utm_medium=readme&utm_campaign=cloudposse-terraform-components/aws-tgw-routes&utm_content=commercial_support"><img alt="Request Quote" src="https://img.shields.io/badge/request%20quote-success.svg?style=for-the-badge"/></a>
-> 
+>
 </details>
 
 ## ✨ Contributing
