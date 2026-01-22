@@ -168,7 +168,9 @@ components:
 
 | Name | Description |
 |------|-------------|
-| <a name="output_mock"></a> [mock](#output\_mock) | Mock output example for the Cloud Posse Terraform component template |
+| <a name="output_transit_gateway_route_table_associations"></a> [transit\_gateway\_route\_table\_associations](#output\_transit\_gateway\_route\_table\_associations) | Transit Gateway route table associations |
+| <a name="output_transit_gateway_route_table_propagations"></a> [transit\_gateway\_route\_table\_propagations](#output\_transit\_gateway\_route\_table\_propagations) | Transit Gateway route table propagations |
+| <a name="output_transit_gateway_routes"></a> [transit\_gateway\_routes](#output\_transit\_gateway\_routes) | Transit Gateway static routes |
 <!-- markdownlint-restore -->
 
 
